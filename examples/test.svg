@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">
+    <circle cx="150" cy="100" r="95" fill="black" />
+    <text x="150" y="115" font-size="60" text-anchor="middle" fill="red">ABC</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">
+    <polygon points="35,200 150,0 265,200" fill="black" />
+    <text x="150" y="150" font-size="60" text-anchor="middle" fill="red">ABC</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">
+    <rect x="50" y="5" width="190" height="190" fill="black" />
+    <text x="150" y="120" font-size="60" text-anchor="middle" fill="red">ABC</text>
+</svg>
