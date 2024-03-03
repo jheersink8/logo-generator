@@ -2,6 +2,13 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const userInput = require('./lib/userInput.js');
+const writeSVG = require('./lib/writeSVG.js');
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) =>
+        err ? console.error(err) : console.log('Generated logo.svg'))
+};
+
 // Init function to run when "node index.js" is invoked.
 function init() {
     inquirer
@@ -32,9 +39,8 @@ function init() {
             }
         ])
         .then((response) => {
-            fs.writeFile('./lib/userResponse.js', JSON.stringify(response), (err) =>
-                err ? console.error(err) : console.log('Generated logo.svg'));
-        })
+            writeToFile("./examples/test1.svg", writeSVG(response))
+        });
 }
-init();
 
+init()
