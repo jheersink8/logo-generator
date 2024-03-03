@@ -3,7 +3,7 @@ GitHub Repo: https://github.com/jheersink8/logo-generator
 
 ## Description
 
-To see a demonstration of this tool, please watch this video: 
+To see a demonstration of this tool, please watch this video: https://drive.google.com/file/d/1CqoSrf6KZxEMBGv_88TJryEYBbNMtonC/view 
 
 This tool is used to generate simple .SVG files through the CLI that contain a shape and text. The user can choose from three shapes and set the color for the shape and the text. This tool is meant to demonstrate a working knowledge of:
 
