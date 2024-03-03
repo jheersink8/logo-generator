@@ -1,52 +1,40 @@
-const colors = require('./lib/colors.js')
-
+// Imported node.js packages
+const fs = require('fs');
 const inquirer = require('inquirer');
-inquirer
-    .prompt([
-        {
-            type: 'input',
-            message: 'Type out your logo text (up to three characters):',
-            name: 'text',
-            validate: function (response) {
-                if (response.length > 3) {
-                    return "Please select three characters or less!"
-                }
-                return true;
+const userInput = require('./lib/userInput.js');
+// Init function to run when "node index.js" is invoked.
+function init() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: userInput.questions[0],
+                name: 'text',
+                validate: userInput.validateLength
+            },
+            {
+                type: 'input',
+                message: userInput.questions[1],
+                name: 'textColor',
+                validate: userInput.validateColor
+            },
+            {
+                type: 'list',
+                message: userInput.questions[2],
+                name: 'shape',
+                choices: ['Circle', 'Triangle', 'Square']
+            },
+            {
+                type: 'input',
+                message: userInput.questions[3],
+                name: 'shapeColor',
+                validate: userInput.validateColor
             }
-        },
-        {
-            type: 'input',
-            message: 'Type your desired text color (either the color keyword or the hexidecimal value):',
-            name: 'textColor',
-            validate: function (response) {
-                const hexColorRange = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-                const lowerResponse = response.toLowerCase();
-                if (!hexColorRange.test(response) && !colors.colorCodes.includes(lowerResponse)) {
-                    return "Please enter a valid hexidecimal value or color keyword!"
-                }
-                return true;
-            }
-        },
-        {
-            type: 'list',
-            message: "Select the shape for your logo:",
-            name: 'shape',
-            choices: ['Circle', 'Triangle', 'Square']
-        },
-        {
-            type: 'input',
-            message: 'Type your desired shape color (either the color keyword or the hexidecimal value):',
-            name: 'shapeColor',
-            validate: function (response) {
-                const hexColorRange = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-                const lowerResponse = response.toLowerCase();
-                if (!hexColorRange.test(response) && !colors.colorCodes.includes(lowerResponse)) {
-                    return "Please enter a valid hexidecimal value or color keyword!"
-                }
-                return true;
-            }
-        }
-    ])
-    .then((response) => {
-        console.log("Generated logo.svg");
-    })
+        ])
+        .then((response) => {
+            fs.writeFile('./lib/userResponse.js', JSON.stringify(response), (err) =>
+                err ? console.error(err) : console.log('Generated logo.svg'));
+        })
+}
+init();
+
